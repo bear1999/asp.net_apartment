@@ -1,0 +1,8 @@
+﻿@model IEnumerable<_NSY.Models.InfoApartment>
+@{
+    Layout = null;
+}
+@foreach (var a in Model)
+{
+    <a class="brand-link"> <img src="~/Assets/dist/img/@a.imageNavbar" alt="NSY" class="img-fluid brand-image img-circle"> <h5><span class="brand-text text-red"><b>&nbsp;&nbsp;@a.tittleNavbar</b></span></h5> </a>
+}

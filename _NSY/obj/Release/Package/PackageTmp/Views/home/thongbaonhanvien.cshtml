@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Thông báo nhân viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Thông báo tòa nhà</h1>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <!-- Box Comment -->
+                    @foreach (var a in Model)
+                    {
+                        <div class="card card-widget">
+                            <div class="card-header">
+                                <div class="user-block"> <img class="img-circle" src="~/Assets/Image/@a.Image_Avatar" alt="User Image"> <span class="username"><a href="#">@a.Username</a></span> <span class="description">Đăng ngày @a.date_submited</span> </div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i> </button>
+                                    <a class="btn btn-tool" href="@Url.Action("capnhatthongbao", "manage", new { id = @a.idNotify })"><i class="fas fa-pen"></i></a>
+                                    <a class="btn btn-tool" href="@Url.Action("xoathongbao", "manage", new { id = @a.idNotify })" onclick="return confirm('Bạn có chắc muốn xóa thông báo này ?')"><i class="fas fa-times"></i></a>
+
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                @Html.Raw(@a.notify)
+                            </div>
+                        </div>
+                    }
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+        <!-- End Main content -->
+    </section>
+</div>

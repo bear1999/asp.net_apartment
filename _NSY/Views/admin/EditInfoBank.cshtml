@@ -1,0 +1,80 @@
+﻿@model IEnumerable<_NSY.Models.InfoBank>
+@{
+    ViewBag.Title = "Edit thông tin Bank";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Edit thông tin Bank</h1>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card card-dark">
+                        <div class="card-header">
+                            <h3 class="card-title">Edit thông tin Bank</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        @using (Html.BeginForm("EditInfoBank", "admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            foreach (var tt in Model)
+                            {
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Tên ngân hàng</label>
+                                        <div class="col-sm-10">
+                                            <p><span style="color:red">@ViewData["Err"]</span></p>
+                                            @Html.TextBox("nameBank", null, new { @class = "form-control", type = "text", placeholder = "Tên ngân hàng", Value = tt.nameBank })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Số tài khoản</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBox("numberBank", null, new { @class = "form-control", type = "text", placeholder = "Số tài khoản", Value = tt.numberBank })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Chủ tài khoản</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBox("ownerBank", null, new { @class = "form-control", type = "text", placeholder = "Chủ tài khoản", Value = tt.ownerBank })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Chi nhánh</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBox("ChiNhanhBank", null, new { @class = "form-control", type = "text", placeholder = "Chi nhánh", Value = tt.ChiNhanhBank })
+                                        </div>
+                                    </div>
+                                    <p><span style="color:red">@ViewData["Err1"]</span></p>
+                                </div>
+                            }
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-info">Cập nhật</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+    <!-- End Main content -->
+</div>

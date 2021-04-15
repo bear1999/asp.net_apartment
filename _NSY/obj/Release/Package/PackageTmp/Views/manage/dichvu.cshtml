@@ -1,0 +1,61 @@
+﻿@model IEnumerable<_NSY.Models.services_type>
+@{
+    ViewBag.Title = "Dịch vụ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Danh sách dịch vụ</h1>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <span>@ViewData["Err"]</span>
+                <div class="card">
+                    @foreach (var a in Model)
+                    {
+                        <div class="card-header">
+                            <h3 class="card-title text-danger"><b>@a.name_service</b></h3>
+                        </div>
+                        <div class="card-body">
+                            @if (String.IsNullOrEmpty(@a.description))
+                            {
+                                <span>Mô tả: Không có</span>
+                            }
+                            else
+                            {
+                                <span>Mô tả: @a.description</span>
+                            }
+                            <br />
+                            @if (a.type == true)
+                            { <span>Dịch vụ có hệ số</span> }
+                            else
+                            { <span>Dịch vụ không hệ số</span> }
+                            <br />Giá: @a.Price VND / @a.DonVi
+                        </div>
+                        <div class="card-footer">
+                            <div class="float-left">
+                                <a class="btn btn-info btn-sm" href="@Url.Action("dangkydichvu", "manage", new { id = @a.serviceType })" onclick="return confirm('Bạn có chắc muốn đăng ký dịch vụ này chứ ?')"><i class="fas fa-plus fa-lg"></i>&nbsp;&nbsp;<b>Đăng ký</b></a>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <!-- Small boxes (Stat box) -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </section>
+    <!-- End Main content -->
+</div>

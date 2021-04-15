@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="apartment" Class="ApartmentDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=NSY\SQLEXPRESS;Initial Catalog=apartment;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="apartmentConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.accounts" Member="accounts">
+    <Type Name="account">
+      <Column Name="idUser" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Sex" Type="System.String" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="Birthday" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IDCard" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="idStaff" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="lastLogin" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="RegDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Image_Avatar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image_IDCard1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image_IDCard2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="account_login" Member="logins" ThisKey="idUser" OtherKey="idUser" Type="login" />
+      <Association Name="account_owner_home" Member="owner_homes" ThisKey="idUser" OtherKey="idUser" Type="owner_home" />
+      <Association Name="position_account" Member="position" ThisKey="idStaff" OtherKey="idStaff" Type="position" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tickets_text" Member="tickets_texts">
+    <Type Name="tickets_text">
+      <Column Name="idtText" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idUser_post" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateSent" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="tText" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="idTicket" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ticket_tickets_text" Member="ticket" ThisKey="idTicket" OtherKey="idTicket" Type="ticket" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.apartments" Member="apartments">
+    <Type Name="apartment">
+      <Column Name="idMain" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="statusGeneral" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idSub" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="typeApartment" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Rent" Type="System.Decimal" DbType="Decimal(19,4)" CanBeNull="true" />
+      <Column Name="DateRent" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ExpRent" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DienTich" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="apartment_service" Member="services" ThisKey="idMain" OtherKey="idHome" Type="service" />
+      <Association Name="apartments_type_apartment" Member="apartments_type" ThisKey="typeApartment" OtherKey="idType" Type="apartments_type" IsForeignKey="true" />
+      <Association Name="statusGeneral_apartment" Member="statusGeneral1" ThisKey="statusGeneral" OtherKey="idStatus" Type="statusGeneral" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.apartments_type" Member="apartments_types">
+    <Type Name="apartments_type">
+      <Column Name="idType" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name_type" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Association Name="apartments_type_apartment" Member="apartments" ThisKey="idType" OtherKey="typeApartment" Type="apartment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InfoApartment" Member="InfoApartments">
+    <Type Name="InfoApartment">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nameApartment" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="addressApartment" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="telApartment" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="emailApartment" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="tittleNavbar" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="imageNavbar" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InfoBank" Member="InfoBanks">
+    <Type Name="InfoBank">
+      <Column Name="idInfoBank" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nameBank" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="numberBank" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ChiNhanhBank" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ownerBank" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.log_reasonCancel" Member="log_reasonCancels">
+    <Type Name="log_reasonCancel">
+      <Column Name="idLog_Service" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Reason" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.log_service" Member="log_services">
+    <Type Name="log_service">
+      <Column Name="idLogService" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nameService" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="RegDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ExpDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HeSo" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(19,4) NOT NULL" CanBeNull="false" />
+      <Column Name="DonVi" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="type" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="idHome" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CancelOrSave" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="idUserCancel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.login" Member="logins">
+    <Type Name="login">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idUser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(32)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Association Name="account_login" Member="account" ThisKey="idUser" OtherKey="idUser" Type="account" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.notifications_general" Member="notifications_generals">
+    <Type Name="notifications_general">
+      <Column Name="idNotify" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="notify" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="date_submited" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="idUser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="typeUser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="position_notifications_general" Member="position" ThisKey="typeUser" OtherKey="idStaff" Type="position" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.owner_home" Member="owner_homes">
+    <Type Name="owner_home">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idUser" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idHome" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="account_owner_home" Member="account" ThisKey="idUser" OtherKey="idUser" Type="account" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.position" Member="positions">
+    <Type Name="position">
+      <Column Name="idStaff" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name_position" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="idLevel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="position_account" Member="accounts" ThisKey="idStaff" OtherKey="idStaff" Type="account" />
+      <Association Name="position_notifications_general" Member="notifications_generals" ThisKey="idStaff" OtherKey="typeUser" Type="notifications_general" />
+      <Association Name="position_ticket" Member="tickets" ThisKey="idStaff" OtherKey="typeTicket" Type="ticket" />
+    </Type>
+  </Table>
+  <Table Name="dbo.services" Member="services">
+    <Type Name="service">
+      <Column Name="idService" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RegDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ExpDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="serviceType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idHome" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="value" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="apartment_service" Member="apartment" ThisKey="idHome" OtherKey="idMain" Type="apartment" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="services_type_service" Member="services_type" ThisKey="serviceType" OtherKey="serviceType" Type="services_type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.services_type" Member="services_types">
+    <Type Name="services_type">
+      <Column Name="serviceType" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name_service" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(19,4) NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DonVi" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="services_type_service" Member="services" ThisKey="serviceType" OtherKey="serviceType" Type="service" />
+    </Type>
+  </Table>
+  <Table Name="dbo.statusGeneral" Member="statusGenerals">
+    <Type Name="statusGeneral">
+      <Column Name="idStatus" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nameStatus" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="idGroup" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="statusGeneral_apartment" Member="apartments" ThisKey="idStatus" OtherKey="statusGeneral" Type="apartment" />
+      <Association Name="statusGeneral_ticket" Member="tickets" ThisKey="idStatus" OtherKey="idtStatus" Type="ticket" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tickets" Member="tickets">
+    <Type Name="ticket">
+      <Column Name="idTicket" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="typeTicket" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateCreate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="idtStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TittleTicket" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="idUserCreate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idUsetLastPost" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Closed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="ticket_tickets_text" Member="tickets_texts" ThisKey="idTicket" OtherKey="idTicket" Type="tickets_text" />
+      <Association Name="statusGeneral_ticket" Member="statusGeneral" ThisKey="idtStatus" OtherKey="idStatus" Type="statusGeneral" IsForeignKey="true" />
+      <Association Name="position_ticket" Member="position" ThisKey="typeTicket" OtherKey="idStaff" Type="position" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

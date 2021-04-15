@@ -1,0 +1,193 @@
+﻿@model _NSY.Models.Hotro
+@{
+    ViewBag.Title = "Danh sách hỗ trợ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="~/Assets/plugins/summernote/summernote-bs4.css">
+}
+@section scripts {
+    <script src="~/Assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script>
+        let object = ['#example2', '#example3', '#example4', '#example5'];
+        for (let a of object)
+        {
+            $(function () {
+                $(a).DataTable({ "lengthMenu": [[10, 25, 50, 150, 200], [10, 25, 50, 150, 200]] }); //Cái [] ngoài cùng hiện tên vd:"Tất cả" thì = -1
+            });
+        }
+    </script>
+    <script src="~/Assets/plugins/summernote/summernote-bs4.js"></script>
+    <script>
+        $(function () {
+            $('#compose-textarea').summernote({
+                height: 250,
+                placeholder: 'Nội dung'
+            })
+        })
+    </script>
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Danh sách yêu cầu hỗ trợ</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title text-danger"><b>Danh sách hỗ trợ bên Kinh doanh</b></h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-2">
+                            <table id="example2" class="table table-bordered table-striped text-center text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Mã hỗ trợ</th>
+                                        <th>Người tạo</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hoạt động cuối</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var a in Model.Kinhdoanh)
+                                    {
+                                        <tr>
+                                            <td><a href="@Url.Action("chitietyeucauhotro", "support", new { id = a.idTicket })">@a.idTicket</a></td>
+                                            <td>@a.Email</td>
+                                            <td>@Convert.ToDateTime(a.DateCreate).ToString("dd/MM/yyy HH:mm:ss")</td>
+                                            <td>@a.TittleTicket</td>
+                                            <td>@a.NameStatus</td>
+                                            <td>@a.LastRep</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title text-danger"><b>Danh sách hỗ trợ bên Quản lý</b></h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-2">
+                            <table id="example3" class="table table-bordered table-striped text-center text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Mã hỗ trợ</th>
+                                        <th>Người tạo</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hoạt động cuối</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var a in Model.Quanly)
+                                    {
+                                        <tr>
+                                            <td><a href="@Url.Action("chitietyeucauhotro", "support", new { id = a.idTicket })">@a.idTicket</a></td>
+                                            <td>@a.Email</td>
+                                            <td>@Convert.ToDateTime(a.DateCreate).ToString("dd/MM/yyy HH:mm:ss")</td>
+                                            <td>@a.TittleTicket</td>
+                                            <td>@a.NameStatus</td>
+                                            <td>@a.LastRep</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card card-widget card-dark collapsed-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Kinh doanh - danh sách đã hoàn thành</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i> </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body table-responsive p-2">
+                            <table id="example4" class="table table-bordered table-striped text-center text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Mã hỗ trợ</th>
+                                        <th>Người tạo</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hoạt động cuối</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var a in Model.KinhdoanhHT)
+                                    {
+                                        <tr>
+                                            <td><a href="@Url.Action("chitietyeucauhotro", "support", new { id = a.idTicket })">@a.idTicket</a></td>
+                                            <td>@a.Email</td>
+                                            <td>@Convert.ToDateTime(a.DateCreate).ToString("dd/MM/yyy HH:mm:ss")</td>
+                                            <td>@a.TittleTicket</td>
+                                            <td>@a.NameStatus</td>
+                                            <td>@a.LastRep</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card card-widget card-dark collapsed-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Quản lý - danh sách đã hoàn thành</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i> </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body table-responsive p-2">
+                            <table id="example5" class="table table-bordered table-striped text-center text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Mã hỗ trợ</th>
+                                        <th>Người tạo</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hoạt động cuối</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var a in Model.QuanlyHT)
+                                    {
+                                        <tr>
+                                            <td><a href="@Url.Action("chitietyeucauhotro", "support", new { id = a.idTicket })">@a.idTicket</a></td>
+                                            <td>@a.Email</td>
+                                            <td>@Convert.ToDateTime(a.DateCreate).ToString("dd/MM/yyy HH:mm:ss")</td>
+                                            <td>@a.TittleTicket</td>
+                                            <td>@a.NameStatus</td>
+                                            <td>@a.LastRep</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

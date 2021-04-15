@@ -1,0 +1,5 @@
+C:\Users\Administrator\Desktop\ASP.NET\_NSY\Commom\bin\Debug\Commom.dll
+C:\Users\Administrator\Desktop\ASP.NET\_NSY\Commom\bin\Debug\Commom.pdb
+C:\Users\Administrator\Desktop\ASP.NET\_NSY\Commom\obj\Debug\Commom.dll
+C:\Users\Administrator\Desktop\ASP.NET\_NSY\Commom\obj\Debug\Commom.pdb
+C:\Users\Administrator\Desktop\ASP.NET\_NSY\Commom\obj\Debug\Commom.csprojResolveAssemblyReference.cache

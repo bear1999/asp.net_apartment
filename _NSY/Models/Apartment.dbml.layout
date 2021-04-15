@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 19.375" name="Apartment">
+  <DataContextMoniker Name="/ApartmentDataContext" />
+  <nestedChildShapes>
+    <classShape Id="fbdeacaf-9c0e-412d-92fe-9b8b71a77645" absoluteBounds="3.5, 9, 2, 2.9247054036458309">
+      <DataClassMoniker Name="/ApartmentDataContext/account" />
+      <nestedChildShapes>
+        <elementListCompartment Id="01ccec46-5a54-4f47-afea-2417f74a32af" absoluteBounds="3.515, 9.46, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ce7a275a-29c9-41b0-bd1c-87dfa08f7392" absoluteBounds="6.25, 5.125, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/ApartmentDataContext/tickets_text" />
+      <nestedChildShapes>
+        <elementListCompartment Id="31816cbc-9344-4ccc-a158-b992e1abf90a" absoluteBounds="6.265, 5.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="eb27915b-31b5-4175-b605-976608c00cb6" absoluteBounds="3.5, 12.75, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/ApartmentDataContext/apartment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1487012d-7d0b-488d-a13a-05465a182822" absoluteBounds="3.515, 13.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d1a49954-378e-4ea4-8a90-0f9d0e47845e" absoluteBounds="0.75, 13.5, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ApartmentDataContext/apartments_type" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f8168dc0-89b7-44d3-a1a5-f5d81061e635" absoluteBounds="0.765, 13.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0b7a2fb2-9e3d-4802-b786-2679a87a126f" absoluteBounds="6.75, 0.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/ApartmentDataContext/InfoApartment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c368ee72-a0b3-4312-a0e0-8ed75c784769" absoluteBounds="6.765, 1.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6d04b6d4-adbc-4e56-b6f0-32c43bc1e012" absoluteBounds="8.75, 3.75, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/ApartmentDataContext/InfoBank" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b33670f9-def4-42c9-bf0a-602c8b45d495" absoluteBounds="8.765, 4.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3dcf008d-fcec-4d13-a32e-43308f410d14" absoluteBounds="0.75, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/ApartmentDataContext/log_reasonCancel" />
+      <nestedChildShapes>
+        <elementListCompartment Id="910dd863-6e34-4e11-9f86-babed8522185" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6efac929-541e-4ef6-a321-77da3ea03c89" absoluteBounds="8.75, 6.75, 2, 2.9247054036458318">
+      <DataClassMoniker Name="/ApartmentDataContext/log_service" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6dbaf631-c388-409d-b8b5-7e23a67c96ea" absoluteBounds="8.765, 7.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cc4e1d19-0bf2-49ca-b7d9-f3ac9114850a" absoluteBounds="6.25, 10.625, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/ApartmentDataContext/login" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f7a3c7fb-0c0d-425b-b311-20247ac63707" absoluteBounds="6.265, 11.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f0701f80-0c94-4be0-8e09-fee3729571b5" absoluteBounds="3.5, 2.875, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/ApartmentDataContext/notifications_general" />
+      <nestedChildShapes>
+        <elementListCompartment Id="01999af9-0e19-470e-8d51-f12a405fa1c7" absoluteBounds="3.515, 3.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="41d97949-bd1e-4d89-aa66-19161ff598d4" absoluteBounds="6.25, 8.5, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/ApartmentDataContext/owner_home" />
+      <nestedChildShapes>
+        <elementListCompartment Id="69c1cc0e-0b21-4ee6-8b9e-293564ddee31" absoluteBounds="6.265, 8.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="33e95b08-8a04-4f5b-a8ee-4eebacbe87de" absoluteBounds="0.75, 5.375, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/ApartmentDataContext/position" />
+      <nestedChildShapes>
+        <elementListCompartment Id="54be98c8-702f-4669-8aed-f3a4511c3b8b" absoluteBounds="0.765, 5.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d9ae5399-593c-4cb8-b291-6ef151611996" absoluteBounds="6.25, 14.125, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/ApartmentDataContext/service" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3b676e4b-1aa4-4234-80da-f1be019869f2" absoluteBounds="6.265, 14.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a52cf27c-352b-4ac1-9558-5447e44e9f79" absoluteBounds="3.5, 17.125, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/ApartmentDataContext/services_type" />
+      <nestedChildShapes>
+        <elementListCompartment Id="42c7ad2b-4b8d-4a55-add4-087b5c519694" absoluteBounds="3.515, 17.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="930c5fe2-e443-4ff9-8ed9-61138f69c6d7" absoluteBounds="0.75, 8.375, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/ApartmentDataContext/statusGeneral" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d9b826db-7502-49b7-9155-646c1abb94f3" absoluteBounds="0.765, 8.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="26c236fc-e5be-4e2c-9bea-1e17199864cf" absoluteBounds="3.5, 5.875, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/ApartmentDataContext/ticket" />
+      <nestedChildShapes>
+        <elementListCompartment Id="59873a55-cf09-4db4-a5a0-b6e69185d26f" absoluteBounds="3.515, 6.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 14.0969962565104); (3.22916666666667 : 14.0969962565104 : JumpStart); (3.39583333333333 : 14.0969962565104 : JumpEnd); (3.5 : 14.0969962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ApartmentDataContext/apartments_type/apartments_type_apartment" />
+      <nodes>
+        <classShapeMoniker Id="d1a49954-378e-4ea4-8a90-0f9d0e47845e" />
+        <classShapeMoniker Id="eb27915b-31b5-4175-b605-976608c00cb6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 11.2748527018229); (6.25 : 11.2748527018229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ApartmentDataContext/account/account_login" />
+      <nodes>
+        <classShapeMoniker Id="fbdeacaf-9c0e-412d-92fe-9b8b71a77645" />
+        <classShapeMoniker Id="cc4e1d19-0bf2-49ca-b7d9-f3ac9114850a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 9.44314697265625); (6.25 : 9.44314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ApartmentDataContext/account/account_owner_home" />
+      <nodes>
+        <classShapeMoniker Id="fbdeacaf-9c0e-412d-92fe-9b8b71a77645" />
+        <classShapeMoniker Id="41d97949-bd1e-4d89-aa66-19161ff598d4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.7612939453125); (3.125 : 7.1362939453125); (3.125 : 10.4623527018229); (3.22916666666667 : 10.4623527018229 : JumpStart); (3.39583333333333 : 10.4623527018229 : JumpEnd); (3.5 : 10.4623527018229)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ApartmentDataContext/position/position_account" />
+      <nodes>
+        <classShapeMoniker Id="33e95b08-8a04-4f5b-a8ee-4eebacbe87de" />
+        <classShapeMoniker Id="fbdeacaf-9c0e-412d-92fe-9b8b71a77645" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 5.375); (1.75 : 3.76044840494792); (3.5 : 3.76044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ApartmentDataContext/position/position_notifications_general" />
+      <nodes>
+        <classShapeMoniker Id="33e95b08-8a04-4f5b-a8ee-4eebacbe87de" />
+        <classShapeMoniker Id="f0701f80-0c94-4be0-8e09-fee3729571b5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 14.8037019856771); (6.25 : 14.8037019856771)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ApartmentDataContext/apartment/apartment_service" />
+      <nodes>
+        <classShapeMoniker Id="eb27915b-31b5-4175-b605-976608c00cb6" />
+        <classShapeMoniker Id="d9ae5399-593c-4cb8-b291-6ef151611996" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 18.1065991210938); (7.25 : 18.1065991210938); (7.25 : 16.0881982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ApartmentDataContext/services_type/services_type_service" />
+      <nodes>
+        <classShapeMoniker Id="a52cf27c-352b-4ac1-9558-5447e44e9f79" />
+        <classShapeMoniker Id="d9ae5399-593c-4cb8-b291-6ef151611996" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 9.6994429077524); (3.06607443490112 : 10.0155173426535 : JumpStart); (3.18392556509888 : 10.1333684728513 : JumpEnd); (3.3125 : 10.2619429077524); (3.3125 : 14.8209521139323); (3.5 : 14.8209521139323)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ApartmentDataContext/statusGeneral/statusGeneral_apartment" />
+      <nodes>
+        <classShapeMoniker Id="930c5fe2-e443-4ff9-8ed9-61138f69c6d7" />
+        <classShapeMoniker Id="eb27915b-31b5-4175-b605-976608c00cb6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.38544840494792); (6.25 : 6.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ApartmentDataContext/ticket/ticket_tickets_text" />
+      <nodes>
+        <classShapeMoniker Id="26c236fc-e5be-4e2c-9bea-1e17199864cf" />
+        <classShapeMoniker Id="ce7a275a-29c9-41b0-bd1c-87dfa08f7392" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 8.4368490375601); (3.06607443490112 : 8.12077460265898 : JumpStart); (3.18392556509888 : 8.00292347246122 : JumpEnd); (3.3125 : 7.8743490375601); (3.3125 : 8.4118385683093); (3.50153746153846 : 8.22280110677083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ApartmentDataContext/statusGeneral/statusGeneral_ticket" />
+      <nodes>
+        <classShapeMoniker Id="930c5fe2-e443-4ff9-8ed9-61138f69c6d7" />
+        <classShapeMoniker Id="26c236fc-e5be-4e2c-9bea-1e17199864cf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.28689447265625); (3.5 : 6.28689447265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ApartmentDataContext/position/position_ticket" />
+      <nodes>
+        <classShapeMoniker Id="33e95b08-8a04-4f5b-a8ee-4eebacbe87de" />
+        <classShapeMoniker Id="26c236fc-e5be-4e2c-9bea-1e17199864cf" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

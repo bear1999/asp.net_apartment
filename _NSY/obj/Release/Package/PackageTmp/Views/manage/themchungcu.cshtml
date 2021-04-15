@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Thêm chung cư";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Assets/dist/css/hide-arrow-number.css">
+}
+@section scripts {
+    <script src="~/Assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });</script>
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Thêm chung cư</h1>
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <a class="btn btn-danger btn-sm" href="javascript:history.go(-1)"><i class="fas fa-chevron-circle-left"></i>&nbsp;&nbsp;<b>Quay lại</b></a>
+            <p></p>
+            <div class="card">
+                <div class="card-body register-card-body">
+                    <p class="login-box-msg">
+                        <b>THÊM CHUNG CƯ</b>
+                    </p>
+                    @using (Html.BeginForm("themchungcu", "manage", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <p><span style="color:red">@ViewData["Err1"]</span></p>
+                        <p><span style="color:Highlight"><b>@ViewData["Reg1"]</b></span></p>
+                        <label>Tên chung cư / block / tầng / căn hộ</label>
+                        <div class="input-group mb-3">
+                            @Html.TextBox("name", null, new { @class = "form-control", type = "text", placeholder = "Tên ( chung cư, block, tầng, căn hộ )" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <label>Mô tả</label>
+                        <div class="input-group mb-3">
+                            @Html.TextBox("description", null, new { @class = "form-control", type = "text", placeholder = "Mô tả / Địa chỉ" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <label>Trạng thái</label>
+                        <div class="input-group mb-3">
+                            @Html.DropDownList("idStatus", ViewBag.LoadStatusGeneral as SelectList, "Trạng thái", new { @class = "form-control" })
+                            <div class="input-group-text">
+                                <span class="fas fa-briefcase"></span>
+                            </div>
+                        </div>
+                        <label>Loại</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" value="@ViewData["nameType"]" disabled>
+                            <div class="input-group-text">
+                                <span class="fas fa-briefcase"></span>
+                            </div>
+                        </div>
+                        if (Equals(ViewData["nameType"], "Home"))
+                        {
+                            <label>Giá thuê / tháng</label>
+                            <div class="input-group mb-3">
+                                @Html.TextBox("rent", null, new { @class = "form-control", type = "number", placeholder = "Giá thuê ( 5000000,4500000,... )" })
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-money-bill-wave"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Ngày thuê</label>
+                            <div class="input-group mb-3">
+                                @Html.TextBox("daterent", null, new { @class = "form-control", type = "date", name = "daterent" })
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-calendar-alt"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Thời hạn thuê</label>
+                            <div class="input-group mb-3">
+                                @Html.TextBox("exprent", null, new { @class = "form-control", type = "number", placeholder = "Tính theo ngày, 1 chu kỳ gồm 30 ngày" })
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-calendar-alt"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @*<div class="form-group">
+                                <label for="avartar">Ảnh đại diện</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="fileAvatar" accept="image/*" name="fileAvatar">
+                                    <label class="custom-file-label text-muted" for="avartar">Chọn ảnh đại diện</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cmnd">Ảnh thẻ căn cước / CMND</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="fileIDCard1" accept="image/*" name="fileIDCard1">
+                                    <label class="custom-file-label text-muted" for="cmnd">Mặt trước</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="fileIDCard2" accept="image/*" name="fileIDCard2">
+                                    <label class="custom-file-label text-muted" for="cmnd">Mặt sau</label>
+                                </div>
+                            </div>*@
+                        <div class="row">
+                            <!-- /.col -->
+                            <div class="col-md-auto">
+                                <button type="submit" class="btn btn-primary btn-block">Thêm</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

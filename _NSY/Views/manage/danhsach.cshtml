@@ -1,0 +1,199 @@
+﻿@model IEnumerable<_NSY.Models.ApartmentManager>
+@{
+    foreach (var a in Model)
+    {
+        if (a.typeApartment == 1)
+        {
+            ViewBag.Title = "Danh sách chung cư"; break;
+        }
+        else if (a.typeApartment == 2)
+        {
+            ViewBag.Title = "Danh sách block"; break;
+        }
+        else if (a.typeApartment == 3)
+        {
+            ViewBag.Title = "Danh sách tầng"; break;
+        }
+        else if (a.typeApartment == 4)
+        {
+            ViewBag.Title = "Danh sách căn hộ"; break;
+        }
+    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+@section scripts {
+    <script src="~/Assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $(function () {
+            $("#example1").DataTable({ "lengthMenu": [[10, 25, 50, 150, 200], [10, 25, 50, 150, 200]] }); //Cái [] ngoài cùng hiện tên vd:"Tất cả" thì = -1
+        });
+    </script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    @foreach (var a in Model)
+                    {
+                        if (a.typeApartment == 1)
+                        {
+                            <h1 class="m-0 text-dark">Danh sách chung cư</h1> break;
+                        }
+                        else if (a.typeApartment == 2)
+                        {
+                            <h1 class="m-0 text-dark">Danh sách block</h1> break;
+                        }
+                        else if (a.typeApartment == 3)
+                        {
+                            <h1 class="m-0 text-dark">Danh sách tầng</h1> break;
+                        }
+                        else if (a.typeApartment == 4)
+                        {
+                            <h1 class="m-0 text-dark">Danh sách căn hộ</h1> break;
+                        }
+                    }
+                </div>
+                <!-- /.col -->
+                @*<div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            @foreach (var a in Model)
+                            {
+                                if (a.typeApartment == 1)
+                                {
+                                    <li class="breadcrumb-item"><a href="#">Danh sách Chung cư</a> </li> break;
+                                }
+                                else if (a.typeApartment == 2)
+                                {
+                                    <li class="breadcrumb-item"><a href="#">Danh sách Block</a> </li> break;
+                                }
+                                else if (a.typeApartment == 3)
+                                {
+                                    <li class="breadcrumb-item"><a href="#">Danh sách Tầng</a> </li> break;
+                                }
+                                else if (a.typeApartment == 4)
+                                {
+                                    <li class="breadcrumb-item"><a href="#">Danh sách Căn hộ</a> </li> break;
+                                }
+                            }
+                            <li class="breadcrumb-item active">Quản lý</li>
+                        </ol>
+                    </div>*@
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <a class="btn btn-danger btn-sm" href="javascript:history.go(-1)"><i class="fas fa-chevron-circle-left"></i>&nbsp;&nbsp;<b>Quay lại</b></a>
+                <p></p>
+                <div class="card">
+                    <div class="card-header">
+                        @foreach (var a in Model)
+                        {
+                            if (a.typeApartment == 1)
+                            {
+                                <h3 class="card-title">Danh sách chung cư</h3> break;
+                            }
+                            else if (a.typeApartment == 2)
+                            {
+                                <h3 class="card-title">Danh sách block</h3> break;
+                            }
+                            else if (a.typeApartment == 3)
+                            {
+                                <h3 class="card-title">Danh sách tầng</h3> break;
+                            }
+                            else if (a.typeApartment == 4)
+                            {
+                                <h3 class="card-title">Danh sách căn hộ</h3> break;
+                            }
+                        }
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-2">
+                        <table id="example1" class="table table-bordered table-striped text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>STT</th>
+                                    <th>Tên</th>
+                                    <th>Mô tả</th>
+                                    <th>Trạng thái</th>
+                                    <th>Mã</th>
+                                    @foreach (var a in Model)
+                                    {
+                                        if (a.typeApartment == 2)
+                                        {
+                                            <th>Thuộc chung cư</th>
+                                        }
+                                        else if (a.typeApartment == 3)
+                                        {
+                                            <th>Thuộc block</th>
+                                        }
+                                        else if (a.typeApartment == 4)
+                                        {
+                                            <th>Diện tích</th>
+                                            <th>Thuộc tầng</th>
+                                        }
+                                        break;
+                                    }
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int i = 0; }
+                                @foreach (var tt in Model)
+                                {
+                                    i++;
+                                    <tr>
+                                        <td>
+                                            <a href="@Url.Action("capnhatchungcu", "manage", new { id = tt.idMain })"><i class="nav-icon fas fa-edit"></i></a>
+                                            &ensp;<a href="@Url.Action("xoachungcu", "manage", new { id = tt.idMain })" onclick="return confirm('Bạn có chắc muốn xóa chứ ?')"><i class="nav-icon fas fa-trash-alt"></i></a>
+                                        </td>
+                                        <td>@i</td>
+                                        <td>@Html.DisplayFor(a => tt.name)</td>
+                                        @if (tt.description != null)
+                                        {
+                                            <td>@Html.DisplayFor(a => tt.description)</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Không có</td>
+                                        }
+                                        <td>@Html.DisplayFor(a => tt.nameStatus)</td>
+                                        <td>@Html.DisplayFor(a => tt.idMain)</td>
+                                        @if (tt.typeApartment == 4)
+                                        {
+                                            <td>@Html.DisplayFor(a => tt.DienTich)</td>
+                                        }
+                                        @if (tt.typeApartment != 1)
+                                        {
+                                            <td><a href='@Url.Action("capnhatchungcu", "manage", new { id = tt.idSub })'>@tt.idSub</a></td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- End Main content -->
+</div>

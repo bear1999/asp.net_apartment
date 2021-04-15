@@ -1,0 +1,267 @@
+﻿@model _NSY.Models.Canho
+@{
+    ViewBag.Title = "Thông tin căn hộ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var money = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+
+@section scripts {
+    <script src="~/Assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $(function () {
+            $("#example1").DataTable({ "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Tất cả"]] }); //Cái [] ngoài cùng hiện tên vd:"Tất cả" thì = -1
+        });
+    </script>
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Thông tin căn hộ</h1>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-auto">
+                <div class="card card-widget">
+                    <div class="card-body">
+                        <center><h5><span><b>THỐNG KÊ CĂN HỘ</b></span></h5></center>
+                        @foreach (var b in Model.ApartmentManager)
+                        {
+                            <b><span># Mã căn hộ:</span> <span style="color:Highlight">@b.idMain</span></b><br />
+                            <b><span># Diện tích: @b.DienTich m2</span></b><br />
+                            if (Equals(b.idGroup, 0))
+                            {
+                                <b><span># Trạng thái căn hộ: <span class="badge badge-danger">@b.nameStatus</span></span></b>
+                            }
+                            else
+                            {
+                                <b><span># Trạng thái căn hộ: <span class="badge badge-success">@b.nameStatus</span></span></b>
+                            }
+                            if (Equals(b.statusGeneral, 3))
+                            {
+                                <br /><b><span># Giá thuê: @String.Format(money, "{0:c0}", b.Rent) / tháng</span></b>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title text-danger"><b>Dịch vụ</b></h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i> </button>
+                        </div>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-valign-middle text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên dịch vụ</th>
+                                    <th>Mã dịch vụ</th>
+                                    <th>Dạng dịch vụ</th>
+                                    <th>Hệ số</th>
+                                    <th>Đơn vị</th>
+                                    <th>Giá dịch vụ / tháng</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Ngày đăng ký</th>
+                                    <th>Ngày hết hạn</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int i2 = 0;}
+                                @foreach (var d in Model.Dichvukhachhang)
+                                {
+                                    decimal tongtien = 0;
+                                    if (d.type == true)
+                                    { tongtien = decimal.Parse(d.value.ToString()) * d.Price; }
+                                    else { tongtien = d.Price; }
+                                    i2++;
+                                    <tr>
+                                        <td><b>@i2</b></td>
+                                        <td>@d.name_service</td>
+                                        <td>@d.idService</td>
+                                        @if (d.type == false)
+                                        {
+                                            <td>Không hệ số</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Hệ số</td>
+                                        }
+                                        <td>@d.value</td>
+                                        <td>@d.DonVi</td>
+                                        <td>@String.Format(money, "{0:c0}", d.Price)</td>
+                                        @if (d.type == false)
+                                        {
+                                            <td>@String.Format(money, "{0:c0}", d.Price)</td>
+                                        }
+                                        else
+                                        {
+                                            <td>@String.Format(money, "{0:c0}", tongtien)</td>
+                                        }
+                                        <td>@d.RegDate.ToString("dd/MM/yyyy")</td>
+                                        <td><span style="color:#ff0000">@d.ExpDate.ToString("dd/MM/yyyy")</span></td>
+                                        @if (tongtien != 0)
+                                        {
+                                            <td><a class="btn btn-danger btn-sm" href="@Url.Action("Contact", "home")">Thanh toán</a></td>
+                                        }
+                                        else
+                                        {
+                                            <td></td> }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <div class="float-left">
+                            @foreach (var z in Model.ApartmentManager)
+                            {
+                                <a class="btn btn-warning btn-sm" href="@Url.Action("dichvu", "manage", new { id = @z.idMain })"><i class="fas fa-plus fa-lg"></i>&nbsp;&nbsp;<b>Đăng ký dịch vụ</b></a>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- Small boxes (Stat box) -->
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title text-primary"><b>Tạm trú / lưu trú / thường trú</b></h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i> </button>
+                        </div>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-valign-middle text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Ảnh đại diện</th>
+                                    <th>Họ tên</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Giới tính</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Email</th>
+                                    <th>Thẻ căn cước / CMND</th>
+                                    @if (!Equals(Session["idLevel"], 0))
+                                    {
+                                        <th></th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int i = 0;}
+                                @foreach (var a in Model.InfoAccount)
+                                {
+                                    i++;
+                                    <tr>
+                                        <td><b>@i</b></td>
+                                        @if (a.Image_Avatar != null)
+                                        {
+                                            <td><div class="user-block"><img src="~/Assets/Image/@Html.DisplayFor(c => a.Image_Avatar)" alt="@Html.DisplayFor(c => a.Username)" class="img-circle img-size-32 mr-2"></div></td>
+                                        }
+                                        else
+                                        {
+                                            <td><div class="user-block"><img src="~/Assets/dist/img/avatar.png" alt="Default_Avatar" class="img-circle img-size-32 mr-2"></div></td>
+                                        }
+                                        <td>@Html.DisplayFor(c => a.Username)</td>
+                                        <td>@Convert.ToDateTime(a.Birthday).ToString("dd/MM/yyyy")</td>
+                                        <td>@Html.DisplayFor(c => a.Sex)</td>
+                                        <td>@Html.DisplayFor(c => a.PhoneNumber)</td>
+                                        <td>@Html.DisplayFor(c => a.Email)</td>
+                                        <td>@Html.DisplayFor(c => a.IDCard)</td>
+                                        @if (!Equals(Session["idLevel"], 0))
+                                        {
+                                            <td><a href="@Url.Action("capnhatkhachhang", "manage", new { id = @Html.DisplayFor(c => a.idUser) })">Chi tiết</a></td>
+                                        }
+                                        else
+                                        {
+                                            <td></td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Small boxes (Stat box) -->
+            </div>
+            <div class="col">
+                <div class="card card-widget card-dark collapsed-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Lịch sử dịch vụ đã thanh toán</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i> </button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-body table-responsive p-2">
+                        <table id="example1" class="table table-bordered table-striped text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên dịch vụ</th>
+                                    <th>Ngày đăng ký</th>
+                                    <th>Ngày hết hạn</th>
+                                    <th>Hệ số sử dụng</th>
+                                    <th>Giá dịch vụ / tháng</th>
+                                    <th>Đơn vị</th>
+                                    <th>Dạng dịch vụ</th>
+                                    <th>Tổng giá dịch vụ/tháng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int i3 = 0; }
+                                @foreach (var log in Model.LogDichvu)
+                                {
+                                    i3++;
+                                    <tr>
+                                        <td>@i3</td>
+                                        <td>@log.nameService</td>
+                                        <td>@Convert.ToDateTime(log.RegDate).ToString("dd/MM/yyyy")</td>
+                                        <td>@Convert.ToDateTime(log.ExpDate).ToString("dd/MM/yyyy")</td>
+                                        <td>@log.HeSo</td>
+                                        <td>@String.Format(money, "{0:c0}", log.Price)</td>
+                                        <td>@log.DonVi</td>
+                                        @if (log.type == false)
+                                        {
+                                            <td>Không hệ số</td>
+                                            <td>@String.Format(money, "{0:c0}", log.Price)</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Hệ số</td>
+                                            decimal tong = log.Price * decimal.Parse(log.HeSo.ToString());
+                                            <td>@String.Format(money, "{0:c0}", tong)</td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+    </section>
+    <!-- End Main content -->
+</div>

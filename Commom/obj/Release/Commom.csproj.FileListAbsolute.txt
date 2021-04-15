@@ -1,0 +1,4 @@
+C:\Users\Administrator\Desktop\ASP.NET\_NSY\Commom\bin\Release\Commom.dll
+C:\Users\Administrator\Desktop\ASP.NET\_NSY\Commom\bin\Release\Commom.pdb
+C:\Users\Administrator\Desktop\ASP.NET\_NSY\Commom\obj\Release\Commom.dll
+C:\Users\Administrator\Desktop\ASP.NET\_NSY\Commom\obj\Release\Commom.pdb

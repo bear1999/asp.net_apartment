@@ -1,0 +1,264 @@
+﻿@model _NSY.Models.Quanlydichvu
+@{
+    ViewBag.Title = "Quản lý dịch vụ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="~/Assets/dist/css/hide-arrow-number.css">
+}
+@section scripts {
+    <script src="~/Assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $(function () {
+            $("#example1").DataTable({ "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Tất cả"]] }); //Cái [] ngoài cùng hiện tên vd:"Tất cả" thì = -1
+            $("#example2").DataTable({ "lengthMenu": [[10, 25, 50, 150, 200], [10, 25, 50, 150, 200]] }); //Cái [] ngoài cùng hiện tên vd:"Tất cả" thì = -1
+            $("#example3").DataTable({ "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Tất cả"]] }); //Cái [] ngoài cùng hiện tên vd:"Tất cả" thì = -1
+
+        });
+    </script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Quản lý dịch vụ</h1>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    @using (Html.BeginForm("quanlydichvu", "manage", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="card card-widget card-dark collapsed-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Thêm dịch vụ</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i> </button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Tên dịch vụ</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBox("name_service", null, new { @class = "form-control", type = "text", placeholder = "Tên dịch vụ" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Mô tả</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBox("description", null, new { @class = "form-control", type = "text", placeholder = "Mô tả" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Giá dịch vụ</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBox("Price", null, new { @class = "form-control", type = "number", placeholder = "Giá dịch vụ" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Đơn vị</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBox("DonVi", null, new { @class = "form-control", type = "text", placeholder = "Đơn vị ( kWh,m3,... )" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Dạng dịch vụ</label>
+                                    <div class="col-sm-10">
+                                        <select name="HeSo" class="form-control">
+                                            @foreach (var item in ViewBag.LoadHeSo)
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <p><span style="color:red">@ViewData["Err1"]</span></p>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-secondary" onclick="return confirm('Bạn có chắc muốn thêm dịch vụ này ?')">Thêm</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title text-danger"><b>Căn hộ đang cho thuê</b></h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-2">
+                            <table id="example1" class="table table-bordered table-striped text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>STT</th>
+                                        <th>Tên căn hộ</th>
+                                        <th>Ngày thuê</th>
+                                        <th>Ngày hết hạn</th>
+                                        <th>Giá thuê / tháng</th>
+                                        <th>Mã căn hộ</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{int i = 0; }
+                                    @foreach (var renthouse in Model.apartment)
+                                    {
+                                        i++;
+                                        <tr>
+                                            <td><a href="@Url.Action("capnhatchungcu", "manage", new { id = @renthouse.idMain })"><i class="nav-icon fas fa-edit"></i></a></td>
+                                            <td>@i</td>
+                                            <td>@renthouse.name</td>
+                                            <td>@Convert.ToDateTime(renthouse.DateRent).ToString("dd/MM/yyyy")</td>
+                                            <td><span style="color:red">@Convert.ToDateTime(renthouse.ExpRent).ToString("dd/MM/yyyy")</span></td>
+                                            <td>@renthouse.Rent VND</td>
+                                            <td><a href="#">@renthouse.idMain</a></td>
+                                            <td><a class="btn btn-success btn-sm" href="@Url.Action("xacnhanthanhtoancanho", "manage", new { id = renthouse.idMain})">Xác nhận thanh toán</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title text-danger"><b>Danh sách dịch vụ</b></h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-2">
+                            <table id="example3" class="table table-bordered table-striped text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>STT</th>
+                                        <th>Tên dịch vụ</th>
+                                        <th>Mô tả</th>
+                                        <th>Giá dịch vụ / tháng</th>
+                                        <th>Đơn vị</th>
+                                        <th>Dạng dịch vụ (hệ số/không hệ số)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{int i2 = 0; }
+                                    @foreach (var dsdv in Model.services_type)
+                                    {
+                                        i2++;
+                                        <tr>
+                                            <td><a href="@Url.Action("capnhatdichvu", "manage" , new { id=dsdv.serviceType})"><i class="nav-icon fas fa-edit"></i></a></td>
+                                            <td>@i2</td>
+                                            <td>@Html.DisplayFor(b => dsdv.name_service)</td>
+                                            <td>@Html.DisplayFor(b => dsdv.description)</td>
+                                            <td>@Html.DisplayFor(b => dsdv.Price) VND</td>
+                                            <td>@Html.DisplayFor(b => dsdv.DonVi)</td>
+                                            @if (dsdv.type == true)
+                                            {
+                                                <td>Hệ số</td>
+                                            }
+                                            else
+                                            {
+                                                <td>Không hệ số</td>
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title text-danger"><b>Dịch vụ khách hàng đã đăng ký</b></h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-2">
+                            <table id="example2" class="table table-bordered table-striped text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>STT</th>
+                                        <th>Tên dịch vụ</th>
+                                        <th>Ngày đăng ký</th>
+                                        <th>Ngày hết hạn</th>
+                                        <th>Hệ số sử dụng</th>
+                                        <th>Giá dịch vụ / tháng</th>
+                                        <th>Đơn vị</th>
+                                        <th>Dạng dịch vụ</th>
+                                        <th>Tổng giá dịch vụ/tháng</th>
+                                        <th>Mã dịch vụ</th>
+                                        <th>Thuộc căn hộ (mã căn hộ)</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{int i3 = 0; }
+                                    @foreach (var dvkh in Model.Dichvukhachhang)
+                                    {
+                                        i3++;
+                                        <tr>
+                                            <td>
+                                                <a href="@Url.Action("capnhatdichvukhachhang", "manage", new { id = @dvkh.idService})"><i class="nav-icon fas fa-edit"></i></a>
+                                                &ensp;<a href="@Url.Action("huydichvukhachhang", "manage", new { id = @dvkh.idService })"><i class="nav-icon fas fa-trash-alt"></i></a>
+                                            </td>
+                                            <td>@i3</td>
+                                            <td>@dvkh.name_service</td>
+                                            <td>@Convert.ToDateTime(dvkh.RegDate).ToString("dd/MM/yyyy")</td>
+                                            <td><span style="color:red">@Convert.ToDateTime(dvkh.ExpDate).ToString("dd/MM/yyyy")</span></td>
+                                            <td>@dvkh.value</td>
+                                            <td>@dvkh.Price VND</td>
+                                            <td>@dvkh.DonVi</td>
+                                            @if (dvkh.type == true)
+                                            {
+                                                decimal tongtien = decimal.Parse(dvkh.value.ToString()) * dvkh.Price;
+                                                <td>Hệ số</td>
+                                                <td>@tongtien VND</td>
+                                            }
+                                            else
+                                            {
+                                                decimal tongtien = dvkh.Price;
+                                                <td>Không hệ số</td>
+                                                <td>@tongtien VND</td>
+                                            }
+                                            <td>@dvkh.idService</td>
+                                            <td><a href="#">@dvkh.idHome</a></td>
+                                            <td><a class="btn btn-success btn-sm" href="@Url.Action("xacnhanthanhtoandichvu", "manage", new { id = dvkh.idService })">Xác nhận thanh toán</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+    <!-- End Main content -->
+</div>

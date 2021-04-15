@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Đăng ký dịch vụ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Danh sách dịch vụ</h1>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <b><span style="color:red">@ViewData["Err1"]</span></b>
+                        <b><span style="color:orangered">@ViewData["Success"]</span><br /></b>
+                        <b><span style="color:Highlight">@ViewData["Thongtin1"]</span><br /></b>
+                        <b><span style="color:Highlight">@ViewData["Thongtin2"]</span><br /></b>
+                        <b><span style="color:Highlight">@ViewData["Thongtin3"]</span></b>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+    </section>
+    <!-- End Main content -->
+</div>
+

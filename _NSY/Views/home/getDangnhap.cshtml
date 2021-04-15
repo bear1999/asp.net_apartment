@@ -1,0 +1,19 @@
+﻿@model IEnumerable<_NSY.Models.account>
+@{
+    Layout = null;
+}
+
+@foreach (var a in Model)
+{
+    <div class="user-panel mt-3 d-flex">
+        @if (a.Image_Avatar == null)
+        {
+            <div class="image user-block"> <img src="~/Assets/dist/img/avatar.png" class="img-circle elevation-2" alt="User Image"> </div>
+        }
+        else
+        {
+            <div class="image user-block"> <img src="~/Assets/Image/@a.Image_Avatar" class="img-circle elevation-2" alt="User Image"> </div>
+        }
+        <div class="info"><b class="d-block text-white">@a.Username</b><p><span class="d-block text-white"><small>(<a href="@Url.Action("logout", "home")">Đăng xuất</a>)</small></span></p> </div>
+    </div>
+}

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<_NSY.Models.InfoAccount>
+@{
+    ViewBag.Title = "Quản lý nhân viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+@section scripts {
+    <script src="~/Assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $(function () {
+            $("#example1").DataTable({ "lengthMenu": [[10, 25, 50, 150, 200], [10, 25, 50, 150, 200]] }); //Cái [] ngoài cùng hiện tên vd:"Tất cả" thì = -1
+        });
+    </script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Quản lý nhân viên</h1>
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Danh sách nhân viên</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-2">
+                        <table id="example1" class="table table-bordered table-striped text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>STT</th>
+                                    <th>Mã nhân viên</th>
+                                    <th>Họ tên</th>
+                                    <th>Giới tính</th>
+                                    <th>Email</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Bộ phận</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int i = 0; }
+                                @foreach (var nv in Model)
+                                {
+                                    i++;
+                                    <tr>
+                                        <td><a href='@Url.Action("capnhatnhanvien", "admin", new { id = nv.idUser })'><i class="nav-icon fas fa-edit"></i></a></td>
+                                        <td>@i</td>
+                                        <td>@Html.DisplayFor(a => nv.idUser)</td>
+                                        <td>@Html.DisplayFor(a => nv.Username)</td>
+                                        <td>@Html.DisplayFor(a => nv.Sex)</td>
+                                        <td>@Html.DisplayFor(a => nv.Email)</td>
+                                        <td>@Html.DisplayFor(a => nv.PhoneNumber)</td>
+                                        <td>@Html.DisplayFor(a => nv.name_position)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- End Main content -->
+</div>

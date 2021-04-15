@@ -1,0 +1,161 @@
+﻿@model _NSY.Models.InfoAccount
+@{
+    ViewBag.Title = "Thêm nhân viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Assets/dist/css/hide-arrow-number.css">
+}
+@section scripts {
+    <!-- jquery ASP.NET -->
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });</script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Thêm nhân viên</h1>
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body register-card-body">
+                    <p class="login-box-msg">
+                        <b>THÊM NHÂN VIÊN</b>
+                    </p>
+                    @using (Html.BeginForm("themnhanvien", "admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <p><span style="color:red">@ViewData["Err1"]</span></p>
+                        <p><span style="color:Highlight"><b>@ViewData["Reg1"]</b></span></p>
+                        <p><span style="color:Highlight"><b>@ViewData["Reg2"]</b></span></p>
+                        <p><span style="color:Highlight"><b>@ViewData["Reg3"]</b></span></p>
+                        <p><span style="color:red">@Html.ValidationMessageFor(Model => Model.Username)</span></p>
+                        <div class="input-group mb-3">
+                            @Html.TextBox("Username", null, new { @class = "form-control", type = "text", placeholder = "Họ và tên" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <label>Ngày sinh</label>
+                        <p><span style="color:red">@Html.ValidationMessageFor(Model => Model.Birthday)</span></p>
+                        <div class="input-group mb-3">
+                            @Html.TextBox("Birthday", null, new { @class = "form-control", type = "date", name = "Birthday" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-birthday-cake"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <label>Giới tính:<text>&nbsp;&nbsp;&nbsp;</text></label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(m => m.Sex, "Nam") Nam<text>&nbsp;&nbsp;&nbsp;</text>
+                        </label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(m => m.Sex, "Nữ") Nữ
+                        </label>
+                        <p><span style="color:red">@Html.ValidationMessageFor(Model => Model.PhoneNumber)</span></p>
+                        <div class="input-group mb-3">
+                            @Html.TextBox("PhoneNumber", null, new { @class = "form-control", type = "number", placeholder = "Số điện thoại" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fas fa-phone"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <p><span style="color:red">@Html.ValidationMessageFor(Model => Model.IDCard)</span></p>
+                        <div class="input-group mb-3">
+                            @Html.TextBox("IDCard", null, new { @class = "form-control", type = "number", placeholder = "Thẻ căn cước / Chứng minh nhân dân" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-id-card"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <p><span style="color:red">@Html.ValidationMessageFor(Model => Model.Email)</span></p>
+                        <div class="input-group mb-3">
+                            @Html.TextBox("Email", null, new { @class = "form-control", type = "email", placeholder = "Địa chỉ Email" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <label>Chức vụ</label>
+                        <div class="input-group mb-3">
+                            @Html.DropDownList("idStaff", ViewBag.Loadchucvu as SelectList, new { @class = "form-control" })
+                            <div class="input-group-text">
+                                <span class="fas fa-briefcase"></span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            @Html.Password("Password", null, new { @class = "form-control", placeholder = "Mật khẩu" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            @Html.Password("Password1", null, new { @class = "form-control", placeholder = "Nhập lại mật khẩu" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="avartar">Ảnh đại diện</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="fileAvatar" accept="image/*" name="fileAvatar">
+                                <label class="custom-file-label text-muted" for="avartar">Chọn ảnh đại diện</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cmnd">Ảnh thẻ căn cước / CMND</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="fileIDCard1" accept="image/*" name="fileIDCard1">
+                                <label class="custom-file-label text-muted" for="cmnd">Mặt trước</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="fileIDCard2" accept="image/*" name="fileIDCard2">
+                                <label class="custom-file-label text-muted" for="cmnd">Mặt sau</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- /.col -->
+                            <div class="col-md-auto">
+                                <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <aside class="control-sidebar control-sidebar-dark"></aside>
+    </section>
+</div>

@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="~/Assets/dist/img/favicon.jpg" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Assets/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Assets/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/Assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="~/Assets/dist/css/fonts/fonts.css" rel="stylesheet">
+</head>
+
+<body class="hold-transition login-page" style="background-image: url('../../Assets/dist/img/background-login.gif');">
+    <div class="login-box">
+        @*<div class="login-logo">
+               <b class="btn-block btn-lg btn-info">NSY Apartment</b>
+            </div>*@
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg"><b>ĐĂNG NHẬP</b></p>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="input-group mb-3">
+                        @Html.TextBox("Email", null, new { @class = "form-control", type = "text", placeholder = "Email hoặc SĐT" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.Password("Password", null, new { @class = "form-control", placeholder = "Mật khẩu" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <p><span style="color:red">@ViewData["Er1"]</span></p>
+                    <div class="row mb-1">
+                        <!-- /.col -->
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-info btn-block">Đăng nhập</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <p></p>
+                    <p class="mb-1">
+                        <a href="@Url.Action("quenmatkhau", "home")">Bạn quên mật khẩu ?</a>
+                    </p>
+
+                }
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/Assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Assets/dist/js/adminlte.min.js"></script>
+</body>
+
+</html>
+
+

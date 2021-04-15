@@ -1,0 +1,112 @@
+﻿@model IEnumerable<_NSY.Models.Dichvukhachhang>
+@{
+    ViewBag.Title = "Hủy dịch vụ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Assets/dist/css/hide-arrow-number.css">
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Hủy dịch vụ khách hàng</h1>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card card-dark">
+                        <div class="card-header">
+                            <h3 class="card-title">Hủy dịch vụ khách hàng</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        @using (Html.BeginForm("huydichvukhachhang", "manage", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            foreach (var tt in Model)
+                            {
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Tên dịch vụ</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" value="@tt.name_service" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Ngày đăng ký</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" value="@Convert.ToDateTime(tt.RegDate).ToString("dd/MM/yyyy")" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Ngày hết hạn</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" value="@Convert.ToDateTime(tt.ExpDate).ToString("dd/MM/yyyy")" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Đơn vị</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" value="@tt.DonVi" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Dạng dịch vụ</label>
+                                        <div class="col-sm-10">
+                                            <select name="HeSo" class="form-control">
+                                                @if (tt.type == false)
+                                                {
+                                                    <option value="0" selected>Không hệ số</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="1" selected>Hệ số</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Hệ số đã sử dụng</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" value="@tt.value" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Lý do hủy</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBox("LyDo", null, new { @class = "form-control", type = "text", placeholder = "Nhập lý do hủy dịch vụ" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <span style="color:red"><b>@ViewData["Err"]</b></span>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-info" onclick="return confirm('Bạn có chắc muốn hủy dịch vụ này ?')" id="@tt.idService">Hủy dịch vụ</button>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+    <!-- End Main content -->
+</div>

@@ -1,0 +1,236 @@
+﻿@model IEnumerable<_NSY.Models.InfoAccount>
+
+@{
+    ViewBag.Title = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Assets/dist/css/hide-arrow-number.css">
+    <link rel="stylesheet" href="~/Assets/plugins/ekko-lightbox/ekko-lightbox.css">
+}
+@section scripts{
+    <script src="~/Assets/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+    <script>
+        $(function () {
+            $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+                event.preventDefault();
+                $(this).ekkoLightbox({
+                    alwaysShowClose: true
+                });
+            });
+            $('.btn[data-filter]').on('click', function () {
+                $('.btn[data-filter]').removeClass('active');
+                $(this).addClass('active');
+            });
+        })
+    </script>
+    <script src="~/Assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });</script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Thông tin cá nhân</h1>
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-dark">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Ảnh đại diện
+                            </div>
+                        </div>
+                        @foreach (var anh in Model)
+                        {
+                            <div class="card-body">
+                                <div class="row">
+                                    @if (anh.Image_Avatar != null)
+                                    {
+                                        <div class="col-sm-2">
+                                            <a href="~/Assets/Image/@anh.Image_Avatar" data-toggle="lightbox" data-title="Ảnh đại diện" data-gallery="gallery">
+                                                <img src="~/Assets/Image/@anh.Image_Avatar" class="img-fluid mb-2" alt="Ảnh đại diện" />
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-sm-2">
+                                            <a href="~/Assets/dist/img/avatar.png" data-toggle="lightbox" data-title="Ảnh đại diện" data-gallery="gallery">
+                                                <img src="~/Assets/dist/img/avatar.png" class="img-fluid mb-2" alt="Ảnh đại diện" />
+                                            </a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body register-card-body">
+                    <p class="login-box-msg">
+                        <b>THÔNG TIN CÁ NHÂN</b>
+                    </p>
+                    @using (Html.BeginForm("thongtincanhan", "home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <p><span style="color:Highlight">@ViewData["Err2"]</span></p>
+                        <p><span style="color:red">@ViewData["Err1"]</span></p>
+                        <p><span style="color:red">@ViewData["ErrMess1"]</span></p>
+                        <p><span style="color:red">@ViewData["ErrMess2"]</span></p>
+                        <p><span style="color:red">@ViewData["ErrMess3"]</span></p>
+                        <div class="form-group">
+                            <label for="avartar">Ảnh đại diện</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="fileAvatar" accept="image/*" name="fileAvatar">
+                                <label class="custom-file-label text-muted" for="avartar">Cập nhật ảnh đại diện</label>
+                            </div>
+                        </div>
+                        foreach (var tt in Model)
+                        {
+                            <label>Họ tên</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" value="@Html.DisplayFor(a => tt.Username)" disabled>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-user"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" value="@Convert.ToDateTime(tt.Birthday).ToString("dd/MM/yyyy")" disabled>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-birthday-cake"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Giới tính:</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" value="@tt.Sex" disabled>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        @if (tt.Sex == "Nam")
+                                        { <span class="fas fa-male"></span> }
+                                        else
+                                        { <span class="fas fa-female"></span> }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                @Html.TextBox("PhoneNumber", null, new { @class = "form-control", type = "number", placeholder = "Số điện thoại", Value = tt.PhoneNumber })
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fas fa-phone"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Thẻ căn cước / Chứng minh nhân dân</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" value="@tt.IDCard" disabled>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-id-card"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Địa chỉ Email</label>
+                            <div class="input-group mb-3">
+                                @Html.TextBox("Email", null, new { @class = "form-control", type = "email", placeholder = "Địa chỉ Email", Value = tt.Email })
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-envelope"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            if (tt.idStaff != 0)
+                            {
+                                <label>Chức vụ</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" value="@Html.DisplayFor(a => tt.name_position)" disabled>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-briefcase"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <label>Căn hộ sở hữu</label><text>&nbsp;&nbsp;(</text><a href="@Url.Action("chitietcanho", "manage", new { id = tt.idUser })">Chi tiết</a><text>)</text><br />
+                            }
+                            <label>Ngày tham gia</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" value="@Convert.ToDateTime(tt.RegDate).ToString("dd/MM/yyyy HH:mm:ss tt")" disabled>
+                                <div class="input-group-text">
+                                    <span class="fa fa-calendar"></span>
+                                </div>
+                            </div>
+                            <label>Lần cuối đăng nhập</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" value="@Convert.ToDateTime(tt.lastLogin).ToString("dd/MM/yyyy HH:mm:ss tt")" disabled>
+                                <div class="input-group-text">
+                                    <span class="fas fa-clock"></span>
+                                </div>
+                            </div>
+                        }
+                        <label>Đổi mật khẩu</label>
+                        <div class="input-group mb-3">
+                            @Html.Password("CurrentPassword", null, new { @class = "form-control", placeholder = "Mật khẩu hiện tại" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            @Html.Password("Password", null, new { @class = "form-control", placeholder = "Mật khẩu mới" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            @Html.Password("Password1", null, new { @class = "form-control", placeholder = "Nhập lại mật khẩu mới" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- /.col -->
+                            <div class="col-md-auto">
+                                <button type="submit" class="btn btn-primary btn-block" name="updateAccount" value="updateAccount">Cập nhật</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- /.card -->
+    </section>
+</div>

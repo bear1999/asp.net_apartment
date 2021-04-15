@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\Administrator\Desktop\NSY</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplicationInsights.config">
+      <publishTime>03/18/2020 23:08:54</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>03/18/2020 23:08:54</publishTime>
+    </File>
+    <File Include="bin/Commom.dll">
+      <publishTime>05/16/2020 23:56:15</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>12/07/2015 19:04:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>03/10/2016 14:26:18</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>03/10/2016 14:26:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>03/09/2016 12:00:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>03/10/2016 14:26:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>03/10/2016 14:26:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>03/09/2016 11:57:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>06/15/2015 02:06:24</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>04/23/2012 15:23:58</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>06/18/2015 20:19:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>06/18/2015 20:19:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/28/2015 04:02:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/28/2015 04:02:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/_NSY.dll">
+      <publishTime>05/17/2020 00:12:05</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>03/18/2020 23:08:45</publishTime>
+    </File>
+    <File Include="Models/Apartment.dbml">
+      <publishTime>05/16/2020 23:22:49</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>03/29/2020 01:11:05</publishTime>
+    </File>
+    <File Include="scripts/ai.0.22.9-build00167.js">
+      <publishTime>03/18/2020 23:08:54</publishTime>
+    </File>
+    <File Include="scripts/ai.0.22.9-build00167.min.js">
+      <publishTime>03/18/2020 23:08:54</publishTime>
+    </File>
+    <File Include="scripts/jquery-1.10.2.js">
+      <publishTime>03/18/2020 23:22:41</publishTime>
+    </File>
+    <File Include="scripts/jquery-1.10.2.min.js">
+      <publishTime>03/18/2020 23:22:41</publishTime>
+    </File>
+    <File Include="scripts/jquery-1.10.2.min.map">
+      <publishTime>03/18/2020 23:22:41</publishTime>
+    </File>
+    <File Include="scripts/jquery.validate.js">
+      <publishTime>03/18/2020 23:22:42</publishTime>
+    </File>
+    <File Include="scripts/jquery.validate.min.js">
+      <publishTime>03/18/2020 23:22:42</publishTime>
+    </File>
+    <File Include="scripts/jquery.validate.unobtrusive.js">
+      <publishTime>03/18/2020 23:22:42</publishTime>
+    </File>
+    <File Include="scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>03/18/2020 23:22:42</publishTime>
+    </File>
+    <File Include="Views/admin/capnhatnhanvien.cshtml">
+      <publishTime>05/14/2020 22:17:45</publishTime>
+    </File>
+    <File Include="Views/admin/quanlynhanvien.cshtml">
+      <publishTime>05/11/2020 22:42:53</publishTime>
+    </File>
+    <File Include="Views/admin/regstaff.cshtml">
+      <publishTime>03/25/2020 01:03:42</publishTime>
+    </File>
+    <File Include="Views/admin/themnhanvien.cshtml">
+      <publishTime>05/14/2020 21:58:09</publishTime>
+    </File>
+    <File Include="Views/home/doimatkhau.cshtml">
+      <publishTime>05/16/2020 01:59:58</publishTime>
+    </File>
+    <File Include="Views/home/login.cshtml">
+      <publishTime>05/16/2020 01:37:46</publishTime>
+    </File>
+    <File Include="Views/home/notify_customer.cshtml">
+      <publishTime>03/25/2020 01:00:26</publishTime>
+    </File>
+    <File Include="Views/home/quenmatkhau.cshtml">
+      <publishTime>05/16/2020 01:46:02</publishTime>
+    </File>
+    <File Include="Views/home/regstaff.cshtml">
+      <publishTime>03/19/2020 01:39:04</publishTime>
+    </File>
+    <File Include="Views/home/thongbaonhanvien.cshtml">
+      <publishTime>05/11/2020 21:49:23</publishTime>
+    </File>
+    <File Include="Views/home/thongbaotoanha.cshtml">
+      <publishTime>05/11/2020 21:38:21</publishTime>
+    </File>
+    <File Include="Views/home/thongtincanhan.cshtml">
+      <publishTime>05/14/2020 22:09:55</publishTime>
+    </File>
+    <File Include="Views/manage/block.cshtml">
+      <publishTime>05/11/2020 22:43:19</publishTime>
+    </File>
+    <File Include="Views/manage/canho.cshtml">
+      <publishTime>05/16/2020 21:34:44</publishTime>
+    </File>
+    <File Include="Views/manage/capnhatchungcu.cshtml">
+      <publishTime>05/14/2020 01:22:25</publishTime>
+    </File>
+    <File Include="Views/manage/capnhatdichvu.cshtml">
+      <publishTime>05/16/2020 23:33:25</publishTime>
+    </File>
+    <File Include="Views/manage/capnhatdichvukhachhang.cshtml">
+      <publishTime>05/16/2020 21:30:24</publishTime>
+    </File>
+    <File Include="Views/manage/capnhatkhachhang.cshtml">
+      <publishTime>05/14/2020 22:18:33</publishTime>
+    </File>
+    <File Include="Views/manage/capnhatthongbao.cshtml">
+      <publishTime>05/11/2020 01:58:47</publishTime>
+    </File>
+    <File Include="Views/manage/dangkydichvu.cshtml">
+      <publishTime>05/08/2020 22:03:55</publishTime>
+    </File>
+    <File Include="Views/manage/dangkykhachhang.cshtml">
+      <publishTime>05/16/2020 21:30:36</publishTime>
+    </File>
+    <File Include="Views/manage/danhsach.cshtml">
+      <publishTime>05/16/2020 21:30:37</publishTime>
+    </File>
+    <File Include="Views/manage/danhsachdichvudahuy.cshtml">
+      <publishTime>05/16/2020 23:31:04</publishTime>
+    </File>
+    <File Include="Views/manage/dichvu.cshtml">
+      <publishTime>05/16/2020 21:31:20</publishTime>
+    </File>
+    <File Include="Views/manage/floor.cshtml">
+      <publishTime>05/11/2020 22:45:29</publishTime>
+    </File>
+    <File Include="Views/manage/home.cshtml">
+      <publishTime>05/11/2020 22:45:36</publishTime>
+    </File>
+    <File Include="Views/manage/huydichvukhachhang.cshtml">
+      <publishTime>05/16/2020 22:02:20</publishTime>
+    </File>
+    <File Include="Views/manage/quanlychungcu.cshtml">
+      <publishTime>04/18/2020 23:51:39</publishTime>
+    </File>
+    <File Include="Views/manage/quanlydichvu.cshtml">
+      <publishTime>05/16/2020 21:33:47</publishTime>
+    </File>
+    <File Include="Views/manage/quanlykhachhang.cshtml">
+      <publishTime>05/14/2020 22:59:52</publishTime>
+    </File>
+    <File Include="Views/manage/quanlythongbao.cshtml">
+      <publishTime>05/11/2020 22:45:59</publishTime>
+    </File>
+    <File Include="Views/manage/themchungcu.cshtml">
+      <publishTime>05/14/2020 01:22:25</publishTime>
+    </File>
+    <File Include="Views/manage/toanha.cshtml">
+      <publishTime>05/11/2020 22:46:13</publishTime>
+    </File>
+    <File Include="Views/manage/xacnhanthanhtoan.cshtml">
+      <publishTime>05/12/2020 01:07:27</publishTime>
+    </File>
+    <File Include="Views/manage/xacnhanthanhtoancanho.cshtml">
+      <publishTime>05/13/2020 23:47:28</publishTime>
+    </File>
+    <File Include="Views/manage/xacnhanthanhtoandichvu.cshtml">
+      <publishTime>05/13/2020 23:23:26</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>05/16/2020 23:05:01</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>05/16/2020 22:11:24</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>05/16/2020 23:56:19</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

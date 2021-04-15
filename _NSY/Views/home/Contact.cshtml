@@ -1,0 +1,52 @@
+﻿@model IEnumerable<_NSY.Models.InfoBank>
+@{
+    ViewBag.Title = "Thông tin liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h4 style="text-align: center;" class="text-danger"><b>Thông tin liên hệ</b></h4>
+            </div>
+            <div class="card-body">
+                <b>Chung cư:</b> @ViewBag.name<br />
+                <b>Địa chỉ:</b> @ViewBag.addres<br />
+                <b>Tel:</b> @ViewBag.tel<br />
+                <b>Email:</b> @ViewBag.email<br />
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h4 style="text-align: center;" class="text-danger"><b>Thông tin thanh toán</b></h4>
+            </div>
+            <div class="card-body">
+                @{ int i = 0; }
+                @foreach (var a in Model)
+                {
+                    i++;
+                    <b>@i. </b><b style="color:red">@a.nameBank</b><br />
+                    <span style="color:#999999">Chủ tài khoản:</span><span style="color:blue"> @a.ownerBank</span><br />
+                    <span style="color:#999999">Số tài khoản:</span><span style="color:blue"> @a.numberBank</span><br />
+                    <span style="color:#999999">Chi nhánh:</span><span style="color:blue"> @a.ChiNhanhBank</span><br />
+                    <p></p>
+                }
+            </div>
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

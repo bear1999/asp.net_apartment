@@ -1,0 +1,119 @@
+﻿@model _NSY.Models.Hotro
+@{
+    ViewBag.Title = "Chi tiết yêu cầu hỗ trợ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Assets/plugins/summernote/summernote-bs4.css">
+}
+@section scripts {
+    <script src="~/Assets/plugins/summernote/summernote-bs4.js"></script>
+    <script>
+        $(function () {
+            $('#compose-textarea').summernote({
+                height: 250,
+                placeholder: 'Nội dung'
+            })
+        })
+    </script>
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Chi tiết yêu cầu hỗ trợ</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        @if (!Equals(Session["idLevel"], 0))
+                        {
+                            foreach (var c in Model.Ticket)
+                            {
+                            <p>
+                                <a href="@Url.Action("dangxuly", "support", new { id = c.idTicket })"><span class="btn btn-dark">Đang xử lý</span></a>&emsp;
+                                <a href="@Url.Action("dahoanthanh", "support", new { id = c.idTicket })"><span class="btn btn-success">Đã hoàn thành</span></a>
+                            </p>
+                            }
+                        }
+                        <table class="table table-sm text-center">
+                            <thead class="text-nowrap">
+                                <tr class="bg-info">
+                                    <th scope="col">Mã</th>
+                                    <th scope="col">Ngày tạo</th>
+                                    <th scope="col">Trạng thái</th>
+                                    <th scope="col">Hoạt động cuối</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var a in Model.Ticket)
+                                {
+                                    <tr>
+                                        <td>@a.idTicket</td>
+                                        <td>@Convert.ToDateTime(a.DateCreate).ToString("dd/MM/yyyy HH:mm:ss")</td>
+                                        <td>@a.NameStatus</td>
+                                        <td>@a.LastRep</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="timeline">
+                        <div class="time-label">
+                            <span style="background-color: #ff4d4d" class="text-white">
+                                @foreach (var c in Model.Ticket)
+                                { @c.TittleTicket }
+                            </span>
+                        </div>
+                        @foreach (var b in Model.Noidung)
+                        {
+                            <div>
+                                @if (b.Avatar == null)
+                                {
+                                    <i class="fas"><img class="img-circle img-size-32 mr-2" src="~/Assets/dist/img/avatar.png" alt="User Image"></i>
+                                }
+                                else
+                                {
+                                    <i class="fas"><img class="img-circle img-size-32 mr-2" src="~/Assets/Image/@b.Avatar" alt="User Image"></i>
+                                }
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fas fa-clock"></i> @Convert.ToDateTime(b.DateSent).ToString("dd/MM/yyyy HH:mm:ss")</span>
+                                    <h3 class="timeline-header"><a href="#">@b.LastRep</a> </h3>
+                                    <div class="timeline-body">@Html.Raw(b.tText)</div>
+                                </div>
+                            </div>
+                        }
+                        <div><i class="fas fa-clock bg-gray"></i></div>
+                    </div>
+                    @foreach (var d in Model.Ticket)
+                    {
+                        if (d.Closed == false)
+                        {
+                            using (Html.BeginForm("chitietyeucauhotro", "support", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="card-body mb-3">
+                                    <p><span style="color:red">@ViewData["Err"]</span></p>
+                                    @Html.TextArea("Reply", null, new { @class = "form-control", id = "compose-textarea" })
+                                    <div class="float-left">
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Trả lời</button>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

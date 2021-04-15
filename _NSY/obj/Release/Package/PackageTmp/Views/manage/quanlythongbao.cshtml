@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Quản lý thông báo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Assets/plugins/summernote/summernote-bs4.css">
+}
+@section scripts {
+    <script src="~/Assets/plugins/summernote/summernote-bs4.js"></script>
+    <!-- Page Script -->
+    <script>
+        $(function () {
+            //Add text editor
+            $('#compose-textarea').summernote({
+                height: 350
+            })
+        })
+    </script>
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Quản lý thông báo</h1>
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-dark">
+                        <div class="card-header">
+                            <labe><h3 class="card-title">Đăng thông báo</h3></labe>
+                        </div>
+                        <!-- /.card-header -->
+                        @using (Html.BeginForm("quanlythongbao", "manage", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="card-body">
+                                @if (ViewBag.Error != null)
+                                {
+                                    <div class="alert alert-danger">@ViewBag.Error</div><br />
+                                }
+                                else if (ViewBag.Success != null)
+                                {
+                                    <div class="alert alert-success">@ViewBag.Success</div><br />
+                                }
+                                <div class="input-group mb-3">
+                                    <select class="form-control" name="typeUser">
+                                        <option value="0">Thông báo tòa nhà</option>
+                                        <option value="1">Thông báo nhân viên</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-envelope"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">                            
+                                    @Html.TextArea("DangThongBao", null, new { @class = "form-control", id = "compose-textarea" })
+                                </div>
+                            </div>
+                        <!-- /.card-body -->
+                            <div class="card-footer">
+                                <div class="float-right">
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Đăng thông báo</button>
+                                </div>
+                            </div>
+                        }
+                        <!-- /.card-footer -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+    </section>
+    <!-- End Main content -->
+</div>

@@ -1,0 +1,159 @@
+﻿@model IEnumerable<_NSY.Models.ApartmentManager>
+@{
+    ViewBag.Title = "Cập nhật chung cư";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Assets/dist/css/hide-arrow-number.css">
+}
+
+@section scripts {
+    <script src="~/Assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });</script>
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Cập nhật chung cư</h1>
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <a class="btn btn-danger btn-sm" href="javascript:history.go(-1)"><i class="fas fa-chevron-circle-left"></i>&nbsp;&nbsp;<b>Quay lại</b></a>
+            <p></p>
+            <div class="card">
+                <div class="card-body register-card-body">
+                    <p class="login-box-msg">
+                        <b>CẬP NHẬT CHUNG CƯ</b>
+                    </p>
+                    @using (Html.BeginForm("capnhatchungcu", "manage", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <p><span style="color:red">@ViewData["Err1"]</span></p>
+                        <p><span style="color:Highlight"><b>@ViewData["Reg1"]</b></span></p>
+                        <label>Tên chung cư / block / tầng / căn hộ</label>
+                        foreach (var get in Model)
+                        {
+                            <div class="input-group mb-3">
+                                @Html.TextBox("name", null, new { @class = "form-control", type = "text", placeholder = "Tên ( chung cư / block / tầng / căn hộ)", Value = get.name })
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-user"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Mô tả</label>
+                            <div class="input-group mb-3">
+                                @Html.TextBox("description", null, new { @class = "form-control", type = "text", placeholder = "Mô tả / Địa chỉ", Value = get.description })
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-user"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Trạng thái</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" value="@Html.DisplayFor(a => get.nameStatus)" disabled>
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-user"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                @Html.DropDownList("idStatus", ViewBag.LoadStatusGeneral as SelectList, "Trạng thái ( chọn nếu cần thay đổi )", new { @class = "form-control" })
+                                <div class="input-group-text">
+                                    <span class="fas fa-briefcase"></span>
+                                </div>
+                            </div>
+                            <label>Loại</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" value="@Html.DisplayFor(a=>get.name_type)" disabled>
+                                <div class="input-group-text">
+                                    <span class="fas fa-briefcase"></span>
+                                </div>
+                            </div>
+                            if (Equals(ViewData["getTypeName"], "Home"))
+                            {
+                                <label>Giá thuê / tháng</label>
+                                <div class="input-group mb-3">
+                                    @Html.TextBox("rent", null, new { @class = "form-control", type = "text", placeholder = "Giá thuê (5000000,4500000,...)", Value = get.Rent })
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-money-bill-wave"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label>Ngày thuê</label>
+                                <div class="input-group mb-3">
+                                    @if (get.DateRent != null)
+                                    {
+                                        @Html.TextBox("daterent", null, new { @class = "form-control", type = "date", name = "daterent", Value = Convert.ToDateTime(get.DateRent).ToString("yyyy-MM-dd") })
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBox("daterent", null, new { @class = "form-control", type = "date", name = "daterent", Value = Convert.ToDateTime(get.DateRent).ToString() })
+                                    }
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-calendar-alt"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label>Thời hạn thuê</label>
+                                <div class="input-group mb-3">
+                                    @if (get.ExpRent != null)
+                                    {
+                                        @Html.TextBox("exprent", null, new { @class = "form-control", type = "date", name = "exprent", Value = Convert.ToDateTime(get.ExpRent).ToString("yyyy-MM-dd") })
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBox("exprent", null, new { @class = "form-control", type = "date", name = "exprent", Value = Convert.ToDateTime(get.ExpRent).ToString() })
+                                    }<div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-calendar-alt"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label>Cập nhật lại thời hạn thuê</label>
+                                <div class="input-group mb-3">
+                                    @Html.TextBox("date", null, new { @class = "form-control", type = "number", placeholder = "Tính theo ngày, 1 chu kỳ gồm 30 ngày (nếu cập nhật lùi ngày thì -30 ngày)" })
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-calendar-alt"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <div class="row">
+                            <!-- /.col -->
+                            <div class="col-md-auto">
+                                <button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Bạn có chắc muốn cập nhật ?')">Cập nhật</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+

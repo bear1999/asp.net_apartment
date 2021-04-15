@@ -1,0 +1,107 @@
+﻿@model IEnumerable<_NSY.Models.Dichvukhachhang>
+@{
+    ViewBag.Title = "Danh sách dịch vụ đã hủy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var money = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+
+
+@section styles {
+    <link rel="stylesheet" href="~/Assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+@section scripts {
+    <script src="~/Assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $(function () {
+            $("#example1").DataTable({ "lengthMenu": [[10, 25, 50, 150, 200], [10, 25, 50, 150, 200]] }); //Cái [] ngoài cùng hiện tên vd:"Tất cả" thì = -1
+        });
+    </script>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Danh sách dịch vụ đã hủy</h1>
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><span style="color:red"><b>Danh sách dịch vụ đã hủy</b></span></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-2">
+                        <table id="example1" class="table table-bordered table-striped text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên dịch vụ</th>
+                                    <th>Ngày đăng ký</th>
+                                    <th>Ngày hết hạn</th>
+                                    <th>Hệ số sử dụng</th>
+                                    <th>Giá dịch vụ / tháng</th>
+                                    <th>Đơn vị</th>
+                                    <th>Dạng dịch vụ</th>
+                                    <th>Tổng giá dịch vụ/tháng</th>
+                                    <th>Thuộc căn hộ</th>
+                                    <th>Lý do hủy</th>
+                                    <th>Mã NV hủy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int i = 0; }
+                                @foreach (var log in Model)
+                                {
+                                    i++;
+                                    <tr>
+                                        <td>@i</td>
+                                        <td>@log.name_service</td>
+                                        <td>@Convert.ToDateTime(log.RegDate).ToString("dd/MM/yyyy")</td>
+                                        <td>@Convert.ToDateTime(log.ExpDate).ToString("dd/MM/yyyy")</td>
+                                        <td>@log.value</td>
+                                        <td>@String.Format(money, "{0:c0}", log.Price)</td>
+                                        <td>@log.DonVi</td>
+                                        @if (log.type == false)
+                                        {
+                                            <td>Không hệ số</td>
+                                            <td>@String.Format(money, "{0:c0}", log.Price)</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Hệ số</td>
+                                            decimal tonggia = log.Price * decimal.Parse(log.value.ToString());
+                                            <td>@String.Format(money, "{0:c0}", tonggia)</td>
+                                        }
+                                        <td>@log.idHome</td>
+                                        <td>@log.Reason</td>
+                                        <td>@log.idUserCancel</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- End Main content -->
+</div>
+

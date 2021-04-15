@@ -1,0 +1,155 @@
+﻿@model IEnumerable<_NSY.Models.ApartmentManager>
+@{
+    ViewBag.Title = "Tòa nhà";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Quản lý chung cư</h1>
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    @* id = getType *@
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>@ViewData["countChungcu"]</h3>
+                            <p>Tòa nhà</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <a href="@Url.Action("danhsach", "manage", new { id = 1 })" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@ViewData["countBlock"]</h3>
+                            <p>Block</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <a href="@Url.Action("danhsach", "manage", new { id = 2 })" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>@ViewData["countFloor"]</h3>
+                            <p>Tầng</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fab fa-stack-overflow"></i>
+                        </div>
+                        <a href="@Url.Action("danhsach", "manage", new { id = 3 })" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>@ViewData["countHome"]</h3>
+                            <p>Căn hộ</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <a href="@Url.Action("danhsach", "manage", new { id = 4 })" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Chung cư</h3>
+                </div>
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-striped text-nowrap">
+                        <thead>
+                            <tr>
+                                <th style="width: auto">STT</th>
+                                <th style="width: auto">Tên chung cư</th>
+                                <th style="width: auto">Trạng thái</th>
+                                <th style="width: 10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ int i = 0; }
+                            @if (Model != null)
+                            {
+                                foreach (var get in Model)
+                                {
+                                    i++;
+                                    <tr>
+                                        <td>@i.</td>
+                                        <td>
+                                            <span><i class="fas fa-city"></i> @Html.DisplayFor(a => get.name)<br /><small>@Html.DisplayFor(a => get.description)</small></span>
+                                        </td>
+                                        <td class="project-state">
+                                            @if (get.idGroup == 1)
+                                            {
+                                                <span class="badge badge-success">@Html.DisplayFor(a => get.nameStatus)</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-danger">@Html.DisplayFor(a => get.nameStatus)</span>
+                                            }
+                                        </td>
+                                        <td class="project-actions text-right">
+                                            <a class="btn btn-primary btn-sm" href="@Url.Action("block", "manage", new { id = get.idMain })">
+                                                <i class="fas fa-folder"></i>&nbsp;&nbsp;Truy cập
+                                            </a>
+                                            @if (Equals(Session["idLevel"], 2))
+                                            {
+                                                <a class="btn btn-info btn-sm" href="@Url.Action("capnhatchungcu", "manage", new { id = get.idMain })">
+                                                    <i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Cập nhật
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="@Url.Action("xoachungcu", "manage", new { id = get.idMain })" onclick="return confirm('Bạn có chắc muốn xóa ?')" value="deleteAction">
+                                                    <i class="fas fa-trash"></i>&nbsp;&nbsp;Xóa
+                                                </a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            @if (Equals(Session["idLevel"], 2))
+            {
+                <div>
+                    <a class="btn btn-warning btn-sm" href="@Url.Action("themchungcu", "manage", new { id = 0 })"><i class="fas fa-plus fa-lg"></i>&nbsp;&nbsp;<b>Thêm</b></a>
+                </div>
+            }
+            <!-- /.card -->
+        </div>
+    </section>
+    <!-- End Main content -->
+</div>

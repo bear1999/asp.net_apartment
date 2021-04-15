@@ -1,0 +1,103 @@
+﻿@model IEnumerable<_NSY.Models.services_type>
+@{
+    ViewBag.Title = "Cập nhật dịch vụ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Assets/dist/css/hide-arrow-number.css">
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Cập nhật dịch vụ</h1>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card card-dark">
+                        <div class="card-header">
+                            <h3 class="card-title">Cập nhật dịch vụ</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        @using (Html.BeginForm("capnhatdichvu", "manage", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            foreach (var tt in Model)
+                            {
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Tên dịch vụ</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBox("name_service", null, new { @class = "form-control", type = "text", placeholder = "Tên dịch vụ", Value = tt.name_service })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Mô tả</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBox("description", null, new { @class = "form-control", type = "text", placeholder = "Mô tả", Value = tt.description })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Giá dịch vụ</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBox("Price", null, new { @class = "form-control", type = "number", placeholder = "Giá", Value = tt.Price })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Đơn vị</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBox("DonVi", null, new { @class = "form-control", type = "text", placeholder = "Đơn vị ( kWh,m3,... )", Value = tt.DonVi })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Dạng dịch vụ</label>
+                                        <div class="col-sm-10">
+                                            <select name="HeSo" class="form-control">
+                                                @if (tt.type == false)
+                                                {
+                                                    <option value="0" selected>Không hệ số</option>
+                                                    <option value="1">Hệ số</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="0">Không hệ số</option>
+                                                    <option value="1" selected>Hệ số</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <span style="color:red"><b>@ViewData["Err"]</b></span>
+                                        <span style="color:Highlight"><b>@ViewData["Success"]</b></span>
+                                    </div>
+                                </div>
+                            }
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-info">Cập nhật</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+    <!-- End Main content -->
+</div>
